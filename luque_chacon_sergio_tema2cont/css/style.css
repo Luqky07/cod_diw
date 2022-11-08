@@ -1,0 +1,62 @@
+main {
+  width: 100%;
+}
+main h2 {
+  display: flex;
+  justify-content: center;
+  color: #ff9d00;
+}
+main p {
+  width: 75%;
+  margin: auto;
+  font-style: italic;
+  line-height: 120%;
+  color: #2596be;
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2596be;
+}
+header h1 {
+  color: #ff9d00;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+nav a {
+  text-align: center;
+  width: 33.33%;
+  padding: 2%;
+  text-decoration: none;
+  color: #2596be;
+}
+nav a:hover {
+  transition: all 0.5s ease 0s;
+  background-color: #2596be;
+  color: #ff9d00;
+  font-weight: bold;
+}
+footer {
+  width: 90%;
+  margin: 3% auto 0 auto;
+  text-align: end;
+  color: transparent;
+  background-image: linear-gradient(to left, #ff9d00, #2596be, #ff9d00);
+  background-clip: text;
+  animation: color 2s linear infinite;
+  background-size: 500%;
+}
+@keyframes color {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}

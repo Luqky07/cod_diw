@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/luque_chacon_sergio_tema3_ejercicio4.css">
+    <link rel="icon" type="image/x-icon" href="images/lol.jpg" />
+    <title>Reproductos de KDA</title>
+</head>
+
+<body>
+    <audio id="audio" src=""></audio>
+    <header>
+        <form class="form">
+            <div>
+                <input class="search" name="data" type="text" placeholder="Título de la cancion">
+                <input class="enter" type="button" value="Buscar" id="save">
+            </div>
+        </form>
+    </header>
+    <article id="article">
+        <div class="header">
+            <p id="name"></p>
+        </div>
+        <div class="img">
+            <img id="images" src="" />
+        </div>
+        <div id="duracion" class="duracion">
+            <section id="progreso" class="progreso"></section>
+        </div>
+        <div class="controls">
+            <button id="stepBacward" class="button"><span class="glyphicon glyphicon-step-backward"></span></button>
+            <button id="control" class="button"><span class="glyphicon glyphicon-play"></span></button>
+            <button id="stepForward" class="button"><span class="glyphicon glyphicon-step-forward"></span></button>
+            <button id="shuffle" class="button"><span class="glyphicon glyphicon-random"></span></button>
+        </div>
+        <div class="playlist">
+            <ol id="canciones"></ol>
+        </div>
+    </article>
+    <script src="js/luque_chacon_sergio_tema3_ejercicio4.js"></script>
+</body>
+
+</html>

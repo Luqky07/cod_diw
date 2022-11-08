@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Productos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="warning" colspan="6">
+                        <h1 class="text-warning">Products</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td colspan="4">Price</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>42</td>
+                    <td>WebStorm editor</td>
+                    <td>53.5€</td>
+                    <td><button class="btn btn-success">Detail</button></td>
+                    <td><button class="btn btn-warning">Update</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Sciteeditor</td>
+                    <td>0.5€</td>
+                    <td><button class="btn btn-success">Detail</button></td>
+                    <td><button class="btn btn-warning">Update</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>665</td>
+                    <td>Visual Studio Enterprise</td>
+                    <td>553.5€</td>
+                    <td><button class="btn btn-success">Detail</button></td>
+                    <td><button class="btn btn-warning">Update</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="active" colspan="6">Total:3 types</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="container">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#"><span
+                            class="glyphicon glyphicon-arrow-left"></span>Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next<span
+                            class="glyphicon glyphicon-arrow-right"></span></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-danger"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-warning"><span class="glyphicon glyphicon-star"></span></button>
+                <button class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-download"></span></button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-default"><span class="glyphicon glyphicon-th-large"></span></button>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-th"></span></button>
+                <button class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

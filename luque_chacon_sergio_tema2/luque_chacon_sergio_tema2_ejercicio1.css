@@ -1,0 +1,26 @@
+body{
+    font-family: Verdana;
+    font-size: 10pt;
+    color: #000000;
+    background-color: #808080;
+}
+.naranja{
+    color: #ffa500;
+    background-color: #0000ff;
+}
+.consola{
+    color: #008000;
+    font-family: Courier;
+    background-color: #000000;
+}
+.importante{
+    text-decoration: none;
+}
+.importante:hover{
+    background-color: #ffff00;
+}
+#titulo{
+    font-family: Verdana;
+    font-size: 40pt;
+    color: #3e3e3e;
+}

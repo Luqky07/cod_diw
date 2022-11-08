@@ -1,0 +1,98 @@
+body{
+    background: linear-gradient(#000000, #000000 ,#5e007d);
+    background-attachment: fixed;
+}
+header{
+    margin: 2%;
+}
+header div{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 25%;
+}
+header input[type="text"] {
+    margin-right: 2%;
+    padding: 2%;
+    color: #ffffff;
+    background-color: #555555;
+    border-radius: 5px;
+    font-size: 13pt;
+    border: none;
+}
+header input[type="button"]{
+    padding: 2%;
+    color: #ffffff;
+    border: none;
+    background-color: #555555;
+    border-radius: 5px;
+    font-size: 13pt;
+}
+.controls{
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+.controls button{
+    color: #555555;
+    margin: 0.25%;
+    padding: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: auto;
+    border-style: none;
+    border-radius: 5px;
+    background-color: transparent;
+}
+/* article{
+    display: none;
+} */
+.header{
+    overflow: hidden;
+    margin: 2% auto 2% auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 65%;
+    height: 5em;
+}
+.header p{
+    height: 1.5em;
+    color: #555555;
+    width: 100%;
+    font-size: 30pt;
+    animation: textMove 7s infinite linear
+}
+.img{
+    margin: auto;
+    width: 25%;
+}
+.img img{
+    width: 100%;
+}
+.playlist{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+.duracion{
+    margin: 3% auto 0 auto;
+    width: 30%;
+    height: 1em;
+    background-color: #555555;
+}
+.progreso{
+    background-color: #9500c6;
+    width: 0%;
+    height: 100%;
+}
+@keyframes textMove {
+    from{
+        transform: translateX(-89.5%);
+    }
+    to{
+        transform: translateX(89.5%);
+    }
+}

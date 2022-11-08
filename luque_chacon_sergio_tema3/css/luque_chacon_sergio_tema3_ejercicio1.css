@@ -1,0 +1,29 @@
+body{
+    background-image: url("../images/background3.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+header{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+h1{
+    padding: 2%;
+    text-align: center;
+    background-color: rgba(27, 123, 164,0.7);
+    border-radius: 5px;
+}
+footer{
+    background-color: rgba(27, 123, 164,0.7);
+    border-radius: 100%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+footer a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: x-large;
+}
