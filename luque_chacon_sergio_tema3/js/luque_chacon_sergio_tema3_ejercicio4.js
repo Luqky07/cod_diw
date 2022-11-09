@@ -44,6 +44,7 @@ const shuffle = document.getElementById("shuffle");
 const search = document.getElementById("save");
 const data = document.getElementsByName("data")[0];
 const article = document.getElementById("article");
+const ytsearch = "https://www.youtube.com/results?search_query=";
 
 //Variables para cambiar los glyphicons
 
@@ -58,7 +59,6 @@ let actualSong = 0;
 let lista = "";
 let historial = [0];
 let cancionesEscuchadas = [0];
-let busqueda = "";
 for (i in canciones) {
     lista += "<li id='" + i + "'>" + canciones[i].title + "</li>"
 }
@@ -157,7 +157,13 @@ function cambiarProgreso(evento) {
 
 //Guardar busqueda
 function newSearch() {
-    busqueda = data.value;
+    let busqueda = data.value.replace(" ","+");
+    fetch(ytsearch + busqueda)
+    .then(response => response.json())
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => console.log(err));
 }
 //Eventos
 audio.addEventListener("ended", avanzarCancion);
