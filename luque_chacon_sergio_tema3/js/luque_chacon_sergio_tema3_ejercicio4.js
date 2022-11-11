@@ -1,5 +1,8 @@
 //Array de las canciones
-const canciones = [
+
+let cancionesJson;
+
+/* const canciones = [
     {
         title: "I'll show you ft TWICE, Bekuh, BOOM, Annita Wells",
         url: "songs/KDA_-_I’LL_SHOW_YOU_ft_TWICE_Bekuh_BOOM_Annika_Wells_Official_Concept_Video_-_Starring_Ahri[ConverteZilla.com].mp3",
@@ -25,7 +28,9 @@ const canciones = [
         url: "songs/KDA_-_VILLAIN_ft_Madison_Beer_and_Kim_Petras_Official_Concept_Video_-_Starring_Evelynn[ConverteZilla.com].mp3",
         thumbnail: "images/4.jpg"
     }
-];
+]; */
+
+let canciones = [];
 
 /* const canciones = []; */
 
@@ -63,7 +68,7 @@ for (i in canciones) {
     lista += "<li id='" + i + "'>" + canciones[i].title + "</li>"
 }
 listaCanciones.innerHTML = lista;
-actualizarCancion();
+//actualizarCancion();
 
 //Funciones
 
@@ -75,6 +80,7 @@ function reproduccion() {
 
 //Inicia la cancion
 function start() {
+    actualizarCancion();
     audio.play();
     control.innerHTML = pause;
     reproduciendo = true;
@@ -120,13 +126,13 @@ function avanzarCancion() {
 
 //Actualizar el titulo de la canción
 function actualizarCancion() {
-    for (i in canciones) {
+    /* for (i in canciones) {
         document.getElementById(i).style.color = "#ffffff"
-    }
+    } */
     audio.src = canciones[actualSong].url;
-    images.src = canciones[actualSong].thumbnail;
+    images.src = canciones[actualSong].thumbnails;
     title.innerHTML = canciones[actualSong].title;
-    document.getElementById(actualSong).style.color = "#9500c6";
+    /* document.getElementById(actualSong).style.color = "#9500c6"; */
 }
 
 //Cambiar estilo shuffle
@@ -155,16 +161,21 @@ function cambiarProgreso(evento) {
     audio.currentTime = tiempo;
 }
 
-//Guardar busqueda
-function newSearch() {
-    let busqueda = data.value.replace(" ","+");
-    fetch(ytsearch + busqueda)
-    .then(response => response.json())
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => console.log(err));
+async function peticionGetId() {
+    canciones = [];
+    let res = await fetch("http://appfy.ml:8080/api/search?q=" + data.value);
+    res = await res.json();
+    for (r of res) {
+        await peticionGetLink(r);
+    }
 }
+
+async function peticionGetLink(id) {
+    let res = await fetch("http://appfy.ml:8080/api/getLink?id=" + id);
+    res = await res.json();
+    canciones.push(res);
+}
+
 //Eventos
 audio.addEventListener("ended", avanzarCancion);
 audio.addEventListener("timeupdate", actualizarProgreso);
@@ -173,6 +184,6 @@ control.addEventListener("click", reproduccion);
 stepBackward.addEventListener("click", retrocederCancion);
 stepForward.addEventListener("click", avanzarCancion);
 shuffle.addEventListener("click", cambiarShuffle);
-search.addEventListener("click", newSearch);
+search.addEventListener("click", peticionGetId);
 
 //Busqueda youtube
