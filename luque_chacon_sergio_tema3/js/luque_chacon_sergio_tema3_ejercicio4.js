@@ -64,11 +64,8 @@ let actualSong = 0;
 let lista = "";
 let historial = [0];
 let cancionesEscuchadas = [0];
-for (i in canciones) {
-    lista += "<li id='" + i + "'>" + canciones[i].title + "</li>"
-}
-listaCanciones.innerHTML = lista;
-//actualizarCancion();
+let numCanciones = 0;
+
 
 //Funciones
 
@@ -80,7 +77,6 @@ function reproduccion() {
 
 //Inicia la cancion
 function start() {
-    actualizarCancion();
     audio.play();
     control.innerHTML = pause;
     reproduciendo = true;
@@ -102,7 +98,7 @@ function retrocederCancion() {
         cancionesEscuchadas.pop();
     }
     actualizarCancion();
-    start();
+    actualizarLista();
 }
 
 //Pone la siguiente canción
@@ -118,21 +114,25 @@ function avanzarCancion() {
         } while (actualSong == historial[historial.length - 1] || cancionesEscuchadas.includes(actualSong) == true);
     }
     cancionesEscuchadas.push(actualSong);
-    if (cancionesEscuchadas.length == canciones.length) cancionesEscuchadas.splice(0, cancionesEscuchadas.length);
+    if (cancionesEscuchadas.length == canciones.length) cancionesEscuchadas = [actualSong];
     historial.push(actualSong);
     actualizarCancion();
-    start();
+    actualizarLista();
 }
 
 //Actualizar el titulo de la canción
 function actualizarCancion() {
-    /* for (i in canciones) {
-        document.getElementById(i).style.color = "#ffffff"
-    } */
     audio.src = canciones[actualSong].url;
     images.src = canciones[actualSong].thumbnails;
     title.innerHTML = canciones[actualSong].title;
-    /* document.getElementById(actualSong).style.color = "#9500c6"; */
+    start();
+}
+
+function actualizarLista(){
+    for (i in canciones) {
+        document.getElementById(i).style.color = "#ffffff"
+    }
+    document.getElementById(actualSong).style.color = "#9500c6";
 }
 
 //Cambiar estilo shuffle
@@ -162,7 +162,7 @@ function cambiarProgreso(evento) {
 }
 
 async function peticionGetId() {
-    canciones = [];
+    recargarCanciones();
     let res = await fetch("http://appfy.ml:8080/api/search?q=" + data.value);
     res = await res.json();
     for (r of res) {
@@ -174,6 +174,29 @@ async function peticionGetLink(id) {
     let res = await fetch("http://appfy.ml:8080/api/getLink?id=" + id);
     res = await res.json();
     canciones.push(res);
+    listaCanciones.innerHTML += "<li id='" + numCanciones + "'>" + res.title + "</li>";
+    if(numCanciones == 0){
+        iniciarCanciones();
+    }
+    console.log(res);
+    numCanciones++;
+}
+
+function recargarCanciones(){
+    stop();
+    historial = [0];
+    cancionesEscuchadas = [0];
+    canciones = [];
+    actualSong = 0;
+    numCanciones = 0;
+    article.style.display = "none";
+    listaCanciones.innerHTML = "";
+}
+
+function iniciarCanciones(){
+    actualizarCancion();
+    article.style.display = "block";
+    document.getElementById(actualSong).style.color = "#9500c6";
 }
 
 //Eventos

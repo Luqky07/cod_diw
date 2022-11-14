@@ -45,9 +45,9 @@ header input[type="button"]{
     border-radius: 5px;
     background-color: transparent;
 }
-/* article{
+article{
     display: none;
-} */
+}
 .header{
     overflow: hidden;
     margin: 2% auto 2% auto;
