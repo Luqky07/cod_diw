@@ -10,7 +10,27 @@
     <title>Memes españoles</title>
 </head>
 <body>
-    <header></header>
+    <article class="reproductor">
+        <div class="header">
+            <p id="title"></p>
+        </div>
+        <div class="video">
+            <video id="reproductor" src=""></video>
+        </div>
+        <div id="duracion" class="duracion">
+            <section id="progreso" class="progreso"></section>
+        </div>
+        <div class="controls">
+            <button id="stepBacward" class="button"><span class="glyphicon glyphicon-step-backward"></span></button>
+            <button id="control" class="button"><span class="glyphicon glyphicon-play"></span></button>
+            <button id="stepForward" class="button"><span class="glyphicon glyphicon-step-forward"></span></button>
+            <button id="shuffle" class="button"><span class="glyphicon glyphicon-random"></span></button>
+        </div>
+        <div class="playlist">
+            <ol id="playlist"></ol>
+        </div>
+        
+    </article>
     <script src="js/luque_chacon_sergio_tema3cont_ejercicio5.js"></script>
 </body>
 </html>
