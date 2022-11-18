@@ -1,0 +1,21 @@
+form{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+form input{
+    font-size: x-large;
+    margin: 1%;
+    border-radius: 10px;
+    padding: 0.5%;
+    border: 1px solid black;
+}
+ul{
+    margin-top: 2%;
+    list-style: none;
+    text-align: center;
+    font-size: x-large;
+}
+ul li{
+    margin: 1%;
+}

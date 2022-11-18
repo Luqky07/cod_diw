@@ -17,38 +17,41 @@ let playlistMemes  = [
     }
 ]
 
-//Objetos del DOM
-const reproductor = document.getElementById("reproductor");
-const title = document.getElementById("name");
+//Declarando los id del html
+
+const video = document.getElementById("reproductor");
+const control = document.getElementById("control");
 const progreso = document.getElementById("progreso");
 const duracion = document.getElementById("duracion");
 const playlist = document.getElementById("playlist");
 const stepBackward = document.getElementById("stepBacward");
-const control = document.getElementById("control");
 const stepForward = document.getElementById("stepForward");
 const shuffle = document.getElementById("shuffle");
 
+//Variables para cambiar los glyphicons
+
 const play = "<span class='glyphicon glyphicon-play'></span>"
 const pause = "<span class='glyphicon glyphicon-pause'></span>";
+
+//Inicio de la página
 
 let aleatorio = false;
 let reproduciendo = false;
 let actualVideo = 0;
 let lista = "";
 let historial = [0];
-let videosVistos = [0];
-
-//Eventos
-reproductor.addEventListener("ended", avanzarVideo);
-reproductor.addEventListener("timeupdate", actualizarProgreso);
-duracion.addEventListener("click", cambiarProgreso);
-control.addEventListener("click", reproduccion);
-stepBackward.addEventListener("click", retrocederVideo);
-stepForward.addEventListener("click", avanzarVideo);
-shuffle.addEventListener("click", cambiarShuffle);
+let videoVistos = [];
+for (i in playlistMemes) {
+    lista += "<li id='"+ i +"'>" + playlistMemes[i].title + "</li>"
+}
+playlist.innerHTML = lista;
+video.src = playlistMemes[actualVideo].url;
+title.innerHTML = playlistMemes[actualVideo].title;
+document.getElementById(actualVideo).style.color= "#ff0000";
 
 //Funciones
 
+//Para o reanuda la canción
 function reproduccion() {
     if (reproduciendo == false) start();
     else stop();
@@ -69,19 +72,18 @@ function stop() {
 }
 
 //Pone la canción anterior o empieza de nuevo la canción
-function retrocederVideo() {
+function retrocederCancion() {
     if (video.currentTime > 5) actualVideo = historial[historial.length - 1];
     else {
         if (historial.length > 1) historial.pop();
         actualVideo = historial[historial.length - 1];
-        videosVistos.pop();
+        videoVistos.pop();
     }
     actualizarCancion();
-    actualizarLista();
 }
 
 //Pone la siguiente canción
-function avanzarVideo() {
+function avanzarCancion() {
     if (aleatorio == false) {
         if (actualVideo == playlistMemes.length - 1) {
             actualVideo = 0;
@@ -90,25 +92,54 @@ function avanzarVideo() {
     if (aleatorio == true) {
         do {
             actualVideo = Math.ceil(Math.random() * playlistMemes.length - 1);
-        } while (actualVideo == historial[historial.length - 1] || videosVistos.includes(actualVideo) == true);
+        } while (actualVideo == historial[historial.length - 1] || videoVistos.includes(actualVideo) == true);
     }
-    videosVistos.push(actualVideo);
-    if (videosVistos.length == playlistMemes.length) videosVistos = [actualVideo];
+    videoVistos.push(actualVideo);
+    if (videoVistos.length == playlistMemes.length) videoVistos = [];
     historial.push(actualVideo);
     actualizarCancion();
-    actualizarLista();
 }
 
 //Actualizar el titulo de la canción
-function actualizarVideo() {
-    reproductor.src = playlistMemes[actualVideo].url;
+function actualizarCancion() {
+    document.getElementById(historial[historial.length-2]).style.color = "#ffffff";
+    video.src = playlistMemes[actualVideo].url;
     title.innerHTML = playlistMemes[actualVideo].title;
+    document.getElementById(actualVideo).style.color= "#ff0000";
     start();
 }
 
-function actualizarLista(){
-    for (i in playlistMemes) {
-        document.getElementById(i).style.color = "#ffffff"
+//Cambiar estilo shuffle
+function cambiarShuffle() {
+    if (aleatorio == false) {
+        shuffle.style.color = "#03b100";
+        aleatorio = true;
+    } else {
+        shuffle.style.color = "#555555";
+        aleatorio = false;
     }
-    document.getElementById(actualVideo).style.color = "#9500c6";
 }
+
+//Actualizar barra de reproducción
+function actualizarProgreso(evento) {
+    const { duration, currentTime } = evento.srcElement;
+    const porcentaje = (currentTime / duration) * 100;
+    progreso.style.width = porcentaje + "%"
+}
+
+//Permitir cambiar tiempo de la canción
+function cambiarProgreso(evento) {
+    const totalWidth = this.offsetWidth;
+    const ubicacionClick = evento.offsetX;
+    const tiempo = (ubicacionClick / totalWidth) * video.duration;
+    video.currentTime = tiempo;
+}
+
+//Eventos
+video.addEventListener("ended", avanzarCancion);
+video.addEventListener("timeupdate", actualizarProgreso);
+duracion.addEventListener("click", cambiarProgreso);
+control.addEventListener("click", reproduccion);
+stepBackward.addEventListener("click", retrocederCancion);
+stepForward.addEventListener("click", avanzarCancion);
+shuffle.addEventListener("click", cambiarShuffle);

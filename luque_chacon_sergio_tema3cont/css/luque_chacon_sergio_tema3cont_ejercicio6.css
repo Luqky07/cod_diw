@@ -1,0 +1,6 @@
+article *{ 
+    display: inline;
+}
+article canvas{
+    border: 1px solid black;
+}

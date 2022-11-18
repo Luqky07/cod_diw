@@ -1,0 +1,69 @@
+body{
+    background: linear-gradient(#ff0000, #ffff00, #ff0000);
+    background-attachment: fixed;
+}
+.controls{
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+.controls button{
+    color: #555555;
+    margin: 0.25%;
+    padding: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: auto;
+    border-style: none;
+    border-radius: 5px;
+    background-color: transparent;
+}
+.header{
+    overflow: hidden;
+    margin: 2% auto 2% auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 65%;
+    height: 5em;
+}
+.header p{
+    height: 1.5em;
+    color: #555555;
+    width: 100%;
+    font-size: 30pt;
+    animation: textMove 7s infinite linear
+}
+.video{
+    margin: auto;
+    width: 25%;
+}
+.video video{
+    width: 100%;
+}
+.playlist{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+.duracion{
+    margin: 3% auto 0 auto;
+    width: 30%;
+    height: 1em;
+    background-color: #555555;
+}
+.progreso{
+    background-color: #ff0000;
+    width: 0%;
+    height: 100%;
+}
+@keyframes textMove {
+    from{
+        transform: translateX(-89.5%);
+    }
+    to{
+        transform: translateX(89.5%);
+    }
+}
