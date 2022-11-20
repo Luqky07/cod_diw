@@ -40,14 +40,14 @@ let reproduciendo = false;
 let actualVideo = 0;
 let lista = "";
 let historial = [0];
-let videoVistos = [];
+let videoVistos = [0];
 for (i in playlistMemes) {
     lista += "<li id='"+ i +"'>" + playlistMemes[i].title + "</li>"
 }
 playlist.innerHTML = lista;
 video.src = playlistMemes[actualVideo].url;
 title.innerHTML = playlistMemes[actualVideo].title;
-document.getElementById(actualVideo).style.color= "#ff0000";
+document.getElementById(actualVideo).style.color= "#555555";
 
 //Funciones
 
@@ -102,10 +102,12 @@ function avanzarCancion() {
 
 //Actualizar el titulo de la canción
 function actualizarCancion() {
-    document.getElementById(historial[historial.length-2]).style.color = "#ffffff";
+    for (i in playlistMemes) {
+        document.getElementById(i).style.color = "#ffffff"
+    }
     video.src = playlistMemes[actualVideo].url;
     title.innerHTML = playlistMemes[actualVideo].title;
-    document.getElementById(actualVideo).style.color= "#ff0000";
+    document.getElementById(actualVideo).style.color= "#555555";
     start();
 }
 
