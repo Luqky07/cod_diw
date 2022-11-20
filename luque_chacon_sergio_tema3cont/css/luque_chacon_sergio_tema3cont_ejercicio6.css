@@ -1,6 +1,19 @@
-article *{ 
-    display: inline;
+*{
+    font-family: monospace;
 }
-article canvas{
+form{
+    display: flex;
+    justify-content: center;
+}
+input{
+    font-size: xx-large;
+    margin: 0 1% 0 0;
+}
+canvas{
     border: 1px solid black;
+}
+article div{
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
 }
