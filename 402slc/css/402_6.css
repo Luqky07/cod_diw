@@ -1,0 +1,28 @@
+* {
+    font-size: xx-large;
+}
+
+article table{
+    width: 50%;
+    border: 2px solid black;
+    margin: auto;
+    margin-bottom: 3%;
+    padding: 0;
+}
+article table tr * {
+    padding: 1%;
+}
+
+article button {
+    margin-left: 5%;
+}
+
+footer table {
+    margin: auto;
+    border: 2px solid black;
+    padding: 1%;
+}
+
+.alert {
+    background-color: yellow;
+}
