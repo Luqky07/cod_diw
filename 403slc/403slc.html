@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encuenta al trabajador</title>
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/403slc.css" />
+  </head>
+  <body>
+    <form action="403slc.html">
+      <div>
+        <label id="labelWorker" for="worker">Nombre del trabajador</label>
+        <input id="worker" type="text" name="worker" />
+      </div>
+      <br />
+      <div>
+        <label id="labelOpinion" for="opinion"
+          >Describe tu experiencia en la empresa</label
+        >
+        <textarea id="opinion" name="opinion"></textarea>
+      </div>
+      <br />
+      <div>
+        <label>Género</label>
+        <br />
+        <label id="label_male" for="male">Male</label>
+        <input id="male" type="radio" name="gen" value="male" />
+        <br />
+        <label id="label_female" for="female">Female</label>
+        <input id="female" type="radio" name="gen" value="female" />
+      </div>
+      <br />
+      <div>
+        <label id="label_trans1" for="trans1"
+          >Vengo en transporte público</label
+        >
+        <input
+          id="trans1"
+          type="checkbox"
+          name="trans1"
+          value="transporte_publico"
+        />
+        <br />
+        <label id="label_trans2" for="trans2">Vengo en coche</label>
+        <input id="trans2" type="checkbox" name="trans2" value="coche" />
+        <br />
+        <label id="label_trans3" for="trans3">Vengo andando o en bici</label>
+        <input id="trans3" type="checkbox" name="trans3" value="cerca" />
+      </div>
+      <br />
+      <div>
+        <select id="distancia" name="distancia">
+          <option value="cerca">Vivo a menos de 15 kilometros</option>
+          <option value="media">
+            Vivo a más de 15 kilometros y menos de 50 kilometros
+          </option>
+          <option value="lejos">Vivo a más de 50 kilometros</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <input id="submit" type="button" value="Enviar" />
+        <input type="reset" value="Cancelar" />
+      </div>
+    </form>
+    <script>
+      $(document).ready(cargado);
+      function cargado() {
+        let inputText = $("#worker");
+        let textArea = $("#opinion");
+        let inputRadio = $("input[type='radio']");
+        let inputCheckbox = $("input[type='checkbox']");
+        let inputSubmit = $("#submit");
+
+        //Eventos campo text
+        inputText.focus(() => {
+          inputText.addClass("escribiendo");
+        });
+        inputText.blur(() => {
+          inputText.removeClass("escribiendo");
+        });
+        inputText.change(() => {
+          $("#labelWorker").css("color", "#" + colorRandom());
+        });
+        inputText.select(() => {
+          $("#labelWorker").css("background-color", "#" + colorRandom());
+        });
+
+        //Eventos campo textarea
+        textArea.focus(() => {
+          textArea.addClass("escribiendo");
+        });
+        textArea.blur(() => {
+          textArea.removeClass("escribiendo");
+        });
+        textArea.change(() => {
+          $("#labelOpinion").css("color", "#" + colorRandom());
+        });
+        textArea.select(() => {
+          $("#labelOpinion").css("background-color", "#" + colorRandom());
+        });
+
+        //Eventos radiobutton
+        inputRadio.change((e) => {
+          $("#label_" + e.currentTarget.id).css("color", "#" + colorRandom());
+        });
+
+        //Eventos checkbox
+        inputCheckbox.change((e) => {
+          $("#label_" + e.currentTarget.id).css("color", "#" + colorRandom());
+        });
+
+        //Evento submit
+        inputSubmit.click(() => {
+          let message = document.createElement("h1");
+          let txt = document.createTextNode(
+            "Gracias por rellenar nuestro cuestionario"
+          );
+          message.appendChild(txt);
+          $("body").append(message);
+          $("h1").fadeOut(10000, "linear");
+          $("#labelWorker").css("color", "");
+          $("#labelWorker").css("background-color", "");
+          $("#labelOpinion").css("color", "");
+          $("#labelOpinion").css("background-color", "");
+          for (let i = 0; i < inputRadio.length; i++) {
+            $("#label_"+inputRadio[i].id).css("color","");
+          }
+          for (let i = 0; i < inputCheckbox.length; i++) {
+            $("#label_"+inputCheckbox[i].id).css("color","");
+          }
+          $("form").trigger("submit");
+          $("form").trigger("reset");
+        });
+      }
+      //Funciones
+      function colorRandom() {
+        let numColor = (Math.random() * 999999).toFixed(0);
+        return numColor;
+      }
+    </script>
+  </body>
+</html>
